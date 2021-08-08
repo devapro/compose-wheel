@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ComposeExample</string>
+    <string name="add_new_values">Add new values</string>
+</resources>
