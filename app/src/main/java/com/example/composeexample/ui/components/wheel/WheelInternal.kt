@@ -8,7 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 @Composable
 internal fun WheelInternal(
@@ -21,10 +21,47 @@ internal fun WheelInternal(
     val composableScope = rememberCoroutineScope()
     val listState = rememberLazyListState()
 
+    val isScrollInProgress by remember {
+        derivedStateOf {
+            listState.isScrollInProgress
+        }
+    }
+
+    LaunchedEffect(isScrollInProgress) {
+        if (!listState.isScrollInProgress) {
+            val visiblePlaceHeight =
+                listState.layoutInfo.viewportEndOffset + listState.layoutInfo.viewportStartOffset
+            val itemHeight = listState.layoutInfo.visibleItemsInfo.firstOrNull()?.size
+            itemHeight?.let {
+                val centerPosition = (visiblePlaceHeight - itemHeight) / 2
+                val offsetToScroll = itemHeight - centerPosition
+                val indexToScroll = when (listState.firstVisibleItemIndex) {
+                    listState.layoutInfo.totalItemsCount - 2 -> listState.firstVisibleItemIndex - 1
+                    else -> {
+                        if (itemHeight / 2 < listState.firstVisibleItemScrollOffset) {
+                            listState.firstVisibleItemIndex + 1
+                        } else {
+                            listState.firstVisibleItemIndex
+                        }
+                    }
+                }
+                composableScope.launch(context = Dispatchers.Unconfined) {
+                    delay(100)
+                    withContext(Dispatchers.Main) {
+                        listState.animateScrollToItem(
+                            index = indexToScroll,
+                            scrollOffset = offsetToScroll
+                        )
+                    }
+                }
+            }
+        }
+    }
+
     LazyColumn(
         state = listState,
         modifier = modifier
-            .padding(1.dp)
+            .padding(0.dp)
     ) {
         item (key = -1) {
             EmptyRow()
@@ -37,11 +74,22 @@ internal fun WheelInternal(
         ) { index, message ->
 
             //TODO менять цвет / фон / шрифт
-            val updatedTextModifier = if (listState.firstVisibleItemIndex == index) {
-                Modifier.alpha(1f)
-            } else {
-                Modifier.alpha(0.2f)
-            }
+            val itemHeight = listState.layoutInfo.visibleItemsInfo.firstOrNull()?.size
+            val updatedTextModifier = itemHeight?.let {
+                val activeIndex = if (listState.firstVisibleItemScrollOffset > itemHeight/2) {
+                    listState.firstVisibleItemIndex + 1
+                } else {
+                    listState.firstVisibleItemIndex
+                }
+                if (activeIndex == index) {
+                    Modifier.alpha(1f)
+                } else {
+                    Modifier.alpha(0.2f)
+                }
+            } ?: Modifier
+
+
+
 
             WheelRow(
                 wheelItemModel = message,
@@ -56,34 +104,7 @@ internal fun WheelInternal(
         }
     }
 
-    val isScrollInProgress by remember {
-        derivedStateOf {
-            listState.isScrollInProgress
-        }
-    }
 
-    LaunchedEffect(isScrollInProgress) {
-        if(!listState.isScrollInProgress){
-            val visiblePlaceHeight = listState.layoutInfo.viewportEndOffset + listState.layoutInfo.viewportStartOffset
-            val itemHeight = listState.layoutInfo.visibleItemsInfo.firstOrNull()?.size
-            itemHeight?.let {
-                val centerPosition = (visiblePlaceHeight - itemHeight) / 2
-                val offsetToScroll = itemHeight - centerPosition
-                val indexToScroll = when (listState.firstVisibleItemIndex) {
-                    listState.layoutInfo.totalItemsCount - 2 -> listState.firstVisibleItemIndex - 1
-                    else -> listState.firstVisibleItemIndex
-                }
-                if (listState.firstVisibleItemScrollOffset != offsetToScroll && offsetToScroll > 0) {
-                    composableScope.launch {
-                        listState.animateScrollToItem(
-                            index = indexToScroll,
-                            scrollOffset = offsetToScroll
-                        )
-                    }
-                }
-            }
-        }
-    }
 }
 
 @Composable
