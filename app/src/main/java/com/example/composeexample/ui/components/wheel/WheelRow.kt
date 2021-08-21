@@ -26,13 +26,14 @@ fun WheelRow(
             .width(60.dp)
     ) {
         Spacer(
-            modifier = Modifier.height(2.dp)
+            modifier = Modifier
+                .alpha(if (showTopDivider) 1f else 0f)
+                .height(2.dp)
                 .fillMaxWidth()
                 .background(
                     color = Color.Yellow,
                     shape = RoundedCornerShape(0.5.dp)
                 )
-                .alpha(if (showTopDivider) 1f else 0f)
         )
         Text(
             modifier = textModifier.fillMaxWidth().padding(8.dp),
@@ -40,16 +41,15 @@ fun WheelRow(
             text = wheelItemModel.message,
             maxLines = 1
         )
-        if (showBottomDivider) {
-            Spacer(
-                modifier = Modifier.height(2.dp)
-                    .fillMaxWidth()
-                    .background(
-                        color = Color.Yellow,
-                        shape = RoundedCornerShape(0.5.dp)
-                    )
-                    .alpha(if (showBottomDivider) 1f else 0f)
-            )
-        }
+        Spacer(
+            modifier = Modifier
+                .alpha(if (showBottomDivider) 1f else 0f)
+                .height(2.dp)
+                .fillMaxWidth()
+                .background(
+                    color = Color.Yellow,
+                    shape = RoundedCornerShape(0.5.dp)
+                )
+        )
     }
 }

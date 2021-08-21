@@ -50,7 +50,7 @@ class ExampleActivity : ComponentActivity() {
 
                     WheelView(messages = messages)
                     WheelView(messages = messages)
-                    WheelView(messages = messages)
+                    WheelView(messages = messages, selectedIndex = 3)
                 }
             }
         }

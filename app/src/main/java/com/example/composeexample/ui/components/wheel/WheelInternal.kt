@@ -16,18 +16,14 @@ internal fun WheelInternal(
     rowModifier: Modifier = Modifier,
     wheelItemModels: List<WheelItemModel>,
     selectedIndex: Int = 0,
-    onItemSelected: (wheelItemModel: WheelItemModel) -> Unit = {}
+    onItemSelected: (selectedIndex: Int, wheelItemModel: WheelItemModel) -> Unit = {_,_ -> }
 ) {
     val composableScope = rememberCoroutineScope()
     val listState = rememberLazyListState()
 
-    val isScrollInProgress by remember {
-        derivedStateOf {
-            listState.isScrollInProgress
-        }
-    }
+    var setManualFlag = false
 
-    LaunchedEffect(isScrollInProgress) {
+    LaunchedEffect(selectedIndex) {
         if (!listState.isScrollInProgress) {
             val visiblePlaceHeight =
                 listState.layoutInfo.viewportEndOffset + listState.layoutInfo.viewportStartOffset
@@ -45,13 +41,44 @@ internal fun WheelInternal(
                         }
                     }
                 }
-                composableScope.launch(context = Dispatchers.Unconfined) {
-                    delay(100)
-                    withContext(Dispatchers.Main) {
+                if (indexToScroll != selectedIndex || offsetToScroll > 0) {
+                    setManualFlag = true
+                    composableScope.launch {
+                        listState.scrollToItem(
+                            index = selectedIndex,
+                            scrollOffset = offsetToScroll
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    LaunchedEffect(listState.isScrollInProgress) {
+        if (!listState.isScrollInProgress) {
+            val visiblePlaceHeight =
+                listState.layoutInfo.viewportEndOffset + listState.layoutInfo.viewportStartOffset
+            val itemHeight = listState.layoutInfo.visibleItemsInfo.firstOrNull()?.size
+            itemHeight?.let {
+                val centerPosition = (visiblePlaceHeight - itemHeight) / 2
+                val offsetToScroll = itemHeight - centerPosition
+                val indexToScroll = when (listState.firstVisibleItemIndex) {
+                    listState.layoutInfo.totalItemsCount - 2 -> listState.firstVisibleItemIndex - 1
+                    else -> {
+                        if (itemHeight / 2 < listState.firstVisibleItemScrollOffset) {
+                            listState.firstVisibleItemIndex + 1
+                        } else {
+                            listState.firstVisibleItemIndex
+                        }
+                    }
+                }
+                if (!setManualFlag) {
+                    composableScope.launch {
                         listState.animateScrollToItem(
                             index = indexToScroll,
                             scrollOffset = offsetToScroll
                         )
+                        onItemSelected(indexToScroll, wheelItemModels[indexToScroll])
                     }
                 }
             }
@@ -75,28 +102,26 @@ internal fun WheelInternal(
 
             //TODO менять цвет / фон / шрифт
             val itemHeight = listState.layoutInfo.visibleItemsInfo.firstOrNull()?.size
-            val updatedTextModifier = itemHeight?.let {
-                val activeIndex = if (listState.firstVisibleItemScrollOffset > itemHeight/2) {
+            val activeIndex = itemHeight?.let {
+                if (listState.firstVisibleItemScrollOffset > itemHeight/2) {
                     listState.firstVisibleItemIndex + 1
                 } else {
                     listState.firstVisibleItemIndex
                 }
+            }
+            val updatedTextModifier = itemHeight?.let {
                 if (activeIndex == index) {
                     Modifier.alpha(1f)
                 } else {
                     Modifier.alpha(0.2f)
                 }
             } ?: Modifier
-
-
-
-
             WheelRow(
                 wheelItemModel = message,
                 modifier = rowModifier,
                 textModifier = updatedTextModifier,
-                showTopDivider = true,
-                showBottomDivider = index == wheelItemModels.size - 1
+                showTopDivider = index == activeIndex,
+                showBottomDivider = index == activeIndex
             )
         }
         item (key = -2) {
