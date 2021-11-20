@@ -5,7 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -33,24 +34,18 @@ class ExampleActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeExampleTheme {
-                Row(
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
                         .padding(16.dp)
                 ) {
-//                    WheelView(messages = messages)
-//                    WheelView(messages = messages)
-//                    WheelView(messages = messages)
-
-//                    testRect()
-//                    Text(text = "test")
-//                    testRect()
-//                    Text(text = "test")
-//                    testRect()
-
-                    WheelView(messages = messages)
-                    WheelView(messages = messages)
-                    WheelView(messages = messages, selectedIndex = 3)
+                    Row(
+                        modifier = Modifier.align(Alignment.Center)
+                    ) {
+                        WheelView(messages = messages)
+                        WheelView(messages = messages)
+                        WheelView(messages = messages, selectedIndex = 3)
+                    }
                 }
             }
         }

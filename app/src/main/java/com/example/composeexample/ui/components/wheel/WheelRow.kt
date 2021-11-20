@@ -11,45 +11,44 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
-// TODO set width as param
-// TODO set font as param
+private val defaultModifier = Modifier.width(60.dp)
+private val defaultSpacerModifier = Modifier.height(2.dp)
+    .fillMaxWidth()
+    .background(
+        color = Color.Yellow,
+        shape = RoundedCornerShape(0.5.dp)
+    )
+private val defaultTextModifier = Modifier.fillMaxWidth().padding(8.dp)
+
 @Composable
 fun WheelRow(
     wheelItemModel: WheelItemModel,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     textModifier: Modifier = Modifier,
+    spacerModifier: Modifier = Modifier,
     showTopDivider: Boolean = true,
     showBottomDivider: Boolean = true
 ) {
     Column(
-        modifier = modifier
-            .width(60.dp)
+        modifier = defaultModifier.then(modifier)
     ) {
         Spacer(
             modifier = Modifier
                 .alpha(if (showTopDivider) 1f else 0f)
-                .height(2.dp)
-                .fillMaxWidth()
-                .background(
-                    color = Color.Yellow,
-                    shape = RoundedCornerShape(0.5.dp)
-                )
+                .then(defaultSpacerModifier)
+                .then(spacerModifier)
         )
         Text(
-            modifier = textModifier.fillMaxWidth().padding(8.dp),
+            modifier = defaultTextModifier.then(textModifier),
             textAlign = TextAlign.Center,
-            text = wheelItemModel.message,
+            text = wheelItemModel.name,
             maxLines = 1
         )
         Spacer(
             modifier = Modifier
                 .alpha(if (showBottomDivider) 1f else 0f)
-                .height(2.dp)
-                .fillMaxWidth()
-                .background(
-                    color = Color.Yellow,
-                    shape = RoundedCornerShape(0.5.dp)
-                )
+                .then(defaultSpacerModifier)
+                .then(spacerModifier)
         )
     }
 }
