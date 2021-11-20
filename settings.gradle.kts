@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ComposeExample"
 include(":app")
+include(":wheel")

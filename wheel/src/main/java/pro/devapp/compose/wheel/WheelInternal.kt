@@ -1,4 +1,4 @@
-package pro.devapp.compose.wheel.example.ui.components.wheel
+package pro.devapp.compose.wheel
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn

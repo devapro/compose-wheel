@@ -10,9 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import pro.devapp.compose.wheel.example.ui.components.wheel.WheelBox
-import pro.devapp.compose.wheel.example.ui.components.wheel.WheelItemModel
-import pro.devapp.compose.wheel.example.ui.components.wheel.WheelView
+import pro.devapp.compose.wheel.WheelBox
+import pro.devapp.compose.wheel.WheelItemModel
+import pro.devapp.compose.wheel.WheelView
 import pro.devapp.compose.wheel.example.ui.theme.ComposeExampleTheme
 
 class ExampleActivity : ComponentActivity() {
