@@ -1,4 +1,4 @@
-package com.example.composeexample.ui.theme
+package pro.devapp.compose.wheel.example.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

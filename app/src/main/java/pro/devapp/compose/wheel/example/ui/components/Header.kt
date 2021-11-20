@@ -1,4 +1,4 @@
-package com.example.composeexample.ui.components
+package pro.devapp.compose.wheel.example.ui.components
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text

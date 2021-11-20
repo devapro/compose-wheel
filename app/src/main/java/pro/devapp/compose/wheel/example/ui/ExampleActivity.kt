@@ -1,4 +1,4 @@
-package com.example.composeexample.ui
+package pro.devapp.compose.wheel.example.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,10 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.composeexample.ui.components.wheel.WheelBox
-import com.example.composeexample.ui.components.wheel.WheelItemModel
-import com.example.composeexample.ui.components.wheel.WheelView
-import com.example.composeexample.ui.theme.ComposeExampleTheme
+import pro.devapp.compose.wheel.example.ui.components.wheel.WheelBox
+import pro.devapp.compose.wheel.example.ui.components.wheel.WheelItemModel
+import pro.devapp.compose.wheel.example.ui.components.wheel.WheelView
+import pro.devapp.compose.wheel.example.ui.theme.ComposeExampleTheme
 
 class ExampleActivity : ComponentActivity() {
 

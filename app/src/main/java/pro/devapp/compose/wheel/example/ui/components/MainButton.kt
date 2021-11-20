@@ -1,12 +1,13 @@
-package com.example.composeexample.ui.components
+package pro.devapp.compose.wheel.example.ui.components
 
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.composeexample.ui.theme.MainButtonColor
+import pro.devapp.compose.wheel.example.ui.theme.MainButtonColor
 
 @Composable
 fun MainButton() {

@@ -1,14 +1,16 @@
-package com.example.composeexample.ui.components.wheel
+package pro.devapp.compose.wheel.example.ui.components.wheel
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.*
+import kotlinx.coroutines.launch
 
 @Composable
 internal fun WheelInternal(

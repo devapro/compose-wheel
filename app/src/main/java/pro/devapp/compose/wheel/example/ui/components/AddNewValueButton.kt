@@ -1,4 +1,4 @@
-package com.example.composeexample.ui.components
+package pro.devapp.compose.wheel.example.ui.components
 
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -7,8 +7,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.composeexample.R
-import com.example.composeexample.ui.theme.ComposeExampleTheme
+import pro.devapp.compose.wheel.example.R
+import pro.devapp.compose.wheel.example.ui.theme.ComposeExampleTheme
 
 @Composable
 fun AddNewValueButton(onClick: () -> Unit) {

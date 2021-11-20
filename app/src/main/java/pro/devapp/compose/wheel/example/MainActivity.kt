@@ -1,21 +1,23 @@
-package com.example.composeexample
+package pro.devapp.compose.wheel.example
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.composeexample.ui.components.AddNewValueButton
-import com.example.composeexample.ui.components.FullWidthTextField
-import com.example.composeexample.ui.components.Header
-import com.example.composeexample.ui.components.MainButton
-import com.example.composeexample.ui.theme.ComposeExampleTheme
+import pro.devapp.compose.wheel.example.ui.components.AddNewValueButton
+import pro.devapp.compose.wheel.example.ui.components.FullWidthTextField
+import pro.devapp.compose.wheel.example.ui.components.Header
+import pro.devapp.compose.wheel.example.ui.components.MainButton
+import pro.devapp.compose.wheel.example.ui.theme.ComposeExampleTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

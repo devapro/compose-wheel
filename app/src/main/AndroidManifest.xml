@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.composeexample">
+    package="pro.devapp.compose.wheel.example">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeExample">
         <activity
-            android:name=".ui.ExampleActivity"
+            android:name="pro.devapp.compose.wheel.example.ui.ExampleActivity"
             android:exported="true"
             android:theme="@style/Theme.ComposeExample.NoActionBar">
             <intent-filter>

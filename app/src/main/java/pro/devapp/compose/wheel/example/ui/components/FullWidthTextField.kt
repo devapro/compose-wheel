@@ -1,4 +1,4 @@
-package com.example.composeexample.ui.components
+package pro.devapp.compose.wheel.example.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -11,12 +11,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
-import com.example.composeexample.ui.theme.TextFieldLabelStyle
-import com.example.composeexample.ui.theme.TextFieldTextStyle
+import pro.devapp.compose.wheel.example.ui.theme.TextFieldLabelStyle
+import pro.devapp.compose.wheel.example.ui.theme.TextFieldTextStyle
 
 // TODO
 // change bottom border color after focus

@@ -8,7 +8,7 @@ android {
     buildToolsVersion = "30.0.3"
 
     defaultConfig {
-        applicationId = "com.example.composeexample"
+        applicationId = "pro.devapp.compose.wheel.example"
         minSdk = 21
         targetSdk = 31
         versionCode = 1

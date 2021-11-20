@@ -1,4 +1,4 @@
-package com.example.composeexample.ui.components.wheel
+package pro.devapp.compose.wheel.example.ui.components.wheel
 
 data class WheelItemModel(
     val name: String,

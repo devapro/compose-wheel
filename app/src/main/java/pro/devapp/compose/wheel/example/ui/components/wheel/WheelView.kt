@@ -1,4 +1,4 @@
-package com.example.composeexample.ui.components.wheel
+package pro.devapp.compose.wheel.example.ui.components.wheel
 
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable

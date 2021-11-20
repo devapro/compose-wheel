@@ -1,4 +1,4 @@
-package com.example.composeexample.ui.theme
+package pro.devapp.compose.wheel.example.ui.theme
 
 val MainButtonColor = ButtonColors(
     HollywoodCerise,
