@@ -7,7 +7,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -15,7 +14,7 @@ private val defaultModifier = Modifier.width(60.dp)
 private val defaultSpacerModifier = Modifier.height(2.dp)
     .fillMaxWidth()
     .background(
-        color = Color.Yellow,
+        color = Gray,
         shape = RoundedCornerShape(0.5.dp)
     )
 private val defaultTextModifier = Modifier.fillMaxWidth().padding(8.dp)

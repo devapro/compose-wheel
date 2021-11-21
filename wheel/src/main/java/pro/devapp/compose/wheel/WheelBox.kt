@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.layout.layoutId
@@ -16,7 +15,7 @@ fun WheelBox(
     content: @Composable () -> Unit
 ) {
     Layout(
-        modifier = modifier.background(color = Color.Green),
+        modifier = modifier.background(color = LiteGray),
         content = {
             Box(modifier = Modifier.layoutId("templateId")) {
                 template.invoke()
